@@ -7,6 +7,5 @@ public class Teclado extends JPanel {
 
     public Teclado(){
 
-        setBackground(Color.RED);
     }
 }
