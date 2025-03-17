@@ -12,7 +12,6 @@ public class Calculadora extends JFrame {
 
         setDefaultCloseOperation(EXIT_ON_CLOSE); //herdo de jframe
         setSize(232, 322);
-        setUndecorated(true);
         setLocationRelativeTo(null); //No centro da tela
         setVisible(true);
     }
@@ -21,7 +20,6 @@ public class Calculadora extends JFrame {
         //Só vai funcionar se for chamado
         setLayout(new BorderLayout());
 
-        Barra barra = new Barra(new GridLayout(2, 1, 1, 1));
         Display display = new Display();
         Teclado teclado = new Teclado();
 
@@ -30,7 +28,6 @@ public class Calculadora extends JFrame {
         //Diferentes tipos de adição
         add(display, BorderLayout.NORTH);
         add(teclado, BorderLayout.CENTER);
-        add(barra, BorderLayout.NORTH);
     }
 
     public static void main(String[] args) {
