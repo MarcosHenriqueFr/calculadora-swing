@@ -1,9 +1,13 @@
 package main.calc.visao;
 
-import javax.swing.JPanel;
-import java.awt.*;
+import main.calc.modelo.Memoria;
 
-public class Teclado extends JPanel {
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Teclado extends JPanel implements ActionListener {
 
     private final Color COR_CINZA_ESCURO = new Color(68, 68, 68);
     private final Color COR_CINZA_CLARO = new Color(99, 99, 99);
@@ -49,19 +53,21 @@ public class Teclado extends JPanel {
         adicionarBotao(",", COR_CINZA_CLARO, c, 2, 4);
         adicionarBotao("=", COR_LARANJA, c, 3, 4);
 
-        //Passa na adição, muda de linha e coluna
-        //c.gridy = 0;
-        //c.gridx = 0;
-        //add(new Botao("AC", COR_CINZA_ESCURO), c);
-        //c.gridx = 1;
-        //add(new Botao("+/-", COR_CINZA_ESCURO), c);
-
     }
 
     private void adicionarBotao(String texto, Color cor, GridBagConstraints c, int x, int y) {
         c.gridx = x;
         c.gridy = y;
         Botao btn = new Botao(texto, cor);
+        btn.addActionListener(this);
         add(btn, c);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() instanceof JButton){
+            JButton botao = (JButton) e.getSource();
+            Memoria.getInstancia().processarComando(botao.getText());
+        }
     }
 }
